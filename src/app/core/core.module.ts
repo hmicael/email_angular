@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import * as fr from '@angular/common/locales/fr';
+import { registerLocaleData, CommonModule } from '@angular/common';
 
 
 
@@ -7,6 +8,13 @@ import { CommonModule } from '@angular/common';
   declarations: [],
   imports: [
     CommonModule
+  ],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'fr-FR' }
   ]
 })
-export class CoreModule { }
+export class CoreModule {
+  constructor() {
+    registerLocaleData(fr.default);
+  }
+}
