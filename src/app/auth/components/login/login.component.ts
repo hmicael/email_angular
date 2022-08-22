@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { map, tap } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  loginError!: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -20,6 +22,9 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    if(this.authService.isLogged()) {
+      this.router.navigateByUrl('/users');
+    }
     this.titleService.setTitle("Login");
 
     this.loginForm = this.formBuilder.group({
@@ -38,17 +43,11 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     const val = this.loginForm.value;
-    console.log(val.email);
-
-    // if (val.email && val.password) {
-    //     this.authService.login(val.email, val.password)
-    //         .subscribe(
-    //             () => {
-    //                 console.log("User is logged in");
-    //                 this.router.navigateByUrl('/');
-    //             }
-    //         );
-    // }
-}
-
+    if (this.authService.login(val.email, val.password) === true) {
+      this.router.navigateByUrl('/users');
+    } else {
+      this.loginError = "Login failed";
+    }
+    console.log(this.loginError);
+  }
 }

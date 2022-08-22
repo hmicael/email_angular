@@ -15,14 +15,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users">
+        <tr *ngFor="let user of users$ | async">
           <th scope="row">{{ user.id }}</th>
           <td>{{ user.name }}</td>
           <td>{{ user.firstname }}</td>
           <td>{{ user.email }}</td>
           <td class="">
-            <a routerLink="" class="btn btn-sm btn-outline-secondary"><fa-icon [icon]="faEdit"></fa-icon></a>
-            <a routerLink="" class="btn btn-sm btn-outline-secondary"><fa-icon [icon]="faTrash"></fa-icon></a>
+            <a routerLink="/users/{{ user.id }}" class="btn btn-sm btn-outline-secondary"><fa-icon [icon]="faEdit"></fa-icon></a>
+            <a routerLink="/users/{{ user.id }}" class="btn btn-sm btn-outline-secondary"><fa-icon [icon]="faTrash"></fa-icon></a>
           </td>
         </tr>
       </tbody>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.service';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -9,14 +10,14 @@ import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  users!: User[];
+  users$!: Observable<User[]>;
   faEdit = faEdit;
   faTrash = faTrash;
 
   constructor(private usersService: UsersService) { }
 
   ngOnInit(): void {
-    this.users = this.usersService.getUsersList();
+    this.users$ = this.usersService.getUsersList();
   }
 
 }

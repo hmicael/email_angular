@@ -18,7 +18,17 @@ import { UsersModule } from './users/users.module';
     CoreModule,
     HttpClientModule,
     AuthModule,
-    UsersModule
+    UsersModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('access_token');
+        },
+        authScheme: "Bearer ",
+        allowedDomains: ['localhost:8000'],
+        disallowedRoutes: ['https://localhost:8000/api/login']
+      },
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
