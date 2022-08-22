@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserListComponent } from './components/user-list/user-list.component';
-import { NewUserComponent } from './components/new-user/new-user.component';
 import { UserComponent } from './components/user/user.component';
 import { UsersRoutingModule } from './user-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     UserListComponent,
-    NewUserComponent,
     UserComponent,
-    UserEditComponent
+    UserFormComponent,
   ],
   imports: [
     CommonModule,
     UsersRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule
   ]
 })
 export class UsersModule { }

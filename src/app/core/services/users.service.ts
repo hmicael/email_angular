@@ -11,13 +11,17 @@ export class UsersService {
   apiUrl = environment.apiURL;
 
   constructor(private http: HttpClient) {}
-  
+
   getUsersList(): Observable<User[]> {
     return this.http.get<User[]>(`${this.apiUrl}/users`);
   }
 
   getUserById(id: number): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/users/${id}`);
+  }
+
+  addUser(formValue: {name: string, firstname: string, email: string, password: string, roles: []}): Observable<User> {
+    return this.http.post<User>(`${this.apiUrl}/users`, formValue);
   }
 
 }

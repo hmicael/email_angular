@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.form-card {
+  box-sizing: border-box;
+  margin: 20px auto;
+  padding: 10px 30px;
+  box-shadow: lightgray 4px 4px 20px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  margin: 20px auto;
+}

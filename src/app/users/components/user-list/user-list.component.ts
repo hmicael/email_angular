@@ -3,6 +3,7 @@ import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.service';
 import { faTrash, faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-list',
@@ -15,9 +16,14 @@ export class UserListComponent implements OnInit {
   faTrash = faTrash;
   faArrowLeft = faArrowLeft;
 
-  constructor(private usersService: UsersService) { }
+
+  constructor(
+    private usersService: UsersService,
+    private titleService: Title
+    ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('List of users');
     this.users$ = this.usersService.getUsersList();
   }
 }
