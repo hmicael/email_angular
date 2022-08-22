@@ -9,7 +9,6 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root'
 })
 export class AuthService {
-  private token!: Token;
   apiUrl = environment.apiURL;
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
@@ -37,9 +36,5 @@ export class AuthService {
     } else {
       return true;
     }
-  }
-
-  getToken(): Token {
-    return this.token;
   }
 }

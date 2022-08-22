@@ -49,5 +49,6 @@ export class LoginComponent implements OnInit {
       this.loginError = "Login failed";
     }
     console.log(this.loginError);
+    this.router.navigateByUrl('/users');
   }
 }

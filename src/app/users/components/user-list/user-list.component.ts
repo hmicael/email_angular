@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.service';
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEye } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class UserListComponent implements OnInit {
   users$!: Observable<User[]>;
-  faEdit = faEdit;
+  faEye = faEye;
   faTrash = faTrash;
 
   constructor(private usersService: UsersService) { }
@@ -19,5 +19,4 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {
     this.users$ = this.usersService.getUsersList();
   }
-
 }
