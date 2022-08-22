@@ -5,12 +5,14 @@ import { NewUserComponent } from './components/new-user/new-user.component';
 import { UserComponent } from './components/user/user.component';
 import { UsersRoutingModule } from './user-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
     UserListComponent,
     NewUserComponent,
-    UserComponent
+    UserComponent,
+    UserEditComponent
   ],
   imports: [
     CommonModule,
