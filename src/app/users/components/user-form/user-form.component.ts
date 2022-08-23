@@ -97,7 +97,6 @@ export class UserFormComponent implements OnInit {
       if (!this.userForm.value.password) {
         delete this.userForm.value.password;
       }
-
       this.userService.updateUser(this.userForm.value).pipe(
         tap(() => this.router.navigateByUrl(`users/${this.userForm.value.id}`))
       ).subscribe();
