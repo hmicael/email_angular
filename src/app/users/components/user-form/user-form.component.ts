@@ -72,7 +72,7 @@ export class UserFormComponent implements OnInit {
   }
 
   changeRoles(e: any): void {
-    this.userForm.get('roles')?.setValue([e.target.value]);
+    this.userForm.get('roles')?.setValue(e.target.value);
   }
 
   get passwordMatchError(): any {
@@ -93,8 +93,7 @@ export class UserFormComponent implements OnInit {
         tap((value) => this.router.navigateByUrl(`users/+${value.id}`))
       ).subscribe();
     } else {
-      // If the length of password is 0, it means that the password isn't updated
-      // so it will be removed from Json request
+      // If password is null, it will be removed from Json request
       if (!this.userForm.value.password) {
         delete this.userForm.value.password;
       }
