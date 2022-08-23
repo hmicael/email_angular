@@ -57,8 +57,7 @@
 
         <div *ngIf="(f.password.invalid && f.password.touched) || f.password.dirty">
           <!--question mark(?) is a safe navigation operator-->
-          <small *ngIf="f.password.errors?.required" class="text-danger">Password is required</small>
-          <small *ngIf="f.password.errors?.pattern" class="text-danger">
+          <small *ngIf="f.password.errors?.required || f.password.errors?.pattern" class="text-danger">
             Must be 8-20 characters long, contains atleast one uppercase and lowercase letters,
             one number, and one special character
           </small>
