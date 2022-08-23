@@ -6,7 +6,7 @@
           <label for="email" class="form-label">Email:</label>
           <input id="email" type="email" class="form-control"
             [class.is-invalid]="email.invalid && email.touched"
-            formControlName="email">
+            formControlName="email" autofocus>
 
           <div *ngIf="(email.invalid && email.touched) || email.dirty">
             <!--question mark(?) is a safe navigation operator-->

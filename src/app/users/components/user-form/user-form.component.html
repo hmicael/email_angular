@@ -6,7 +6,7 @@
       <div class="form-floating mb-3">
         <input id="name" type="text" class="form-control"
           [class.is-invalid]="f.name.invalid && f.name.touched"
-          formControlName="name" placeholder="Name">
+          formControlName="name" placeholder="Name" autofocus>
         <label for="name" class="form-label">Name:</label>
 
         <div *ngIf="(f.name.invalid && f.name.touched) || f.name.dirty">
