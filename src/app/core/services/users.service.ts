@@ -28,4 +28,7 @@ export class UsersService {
     return this.http.put<User>(`${this.apiUrl}/users/${formValue.id}`, formValue);
   }
 
+  deleteUser(id: number): any{
+    return this.http.delete<User>(`${this.apiUrl}/users/${id}`);
+  }
 }
