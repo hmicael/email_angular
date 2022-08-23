@@ -21,6 +21,10 @@ export class UserFormComponent implements OnInit {
   isAddMode!: boolean;
   faEye= faEye;
   faEyeSlash = faEyeSlash;
+  roles = [
+    {value: 'ROLE_USER', name: 'User'},
+    {value: 'ROLE_ADMIN', name: 'Admin'}
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -48,7 +52,7 @@ export class UserFormComponent implements OnInit {
         ]
       ],
       confirm_password: [null],
-      roles: [['ROLE_USER'], Validators.required]
+      roles: ['ROLE_USER', Validators.required]
     }, {
       validators: [CustomValidators.MatchValidator('password', 'confirm_password')]
     });
@@ -72,7 +76,7 @@ export class UserFormComponent implements OnInit {
   }
 
   changeRoles(e: any): void {
-    this.userForm.get('roles')?.setValue(e.target.value);
+    this.userForm.get('roles')?.setValue([e.target.value]);
   }
 
   get passwordMatchError(): any {
