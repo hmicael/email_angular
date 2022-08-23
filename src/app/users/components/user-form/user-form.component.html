@@ -6,7 +6,7 @@
       <div class="form-floating mb-3">
         <input id="name" type="text" class="form-control"
           [class.is-invalid]="f.name.invalid && f.name.touched"
-          formControlName="name" placeholder="Name" required>
+          formControlName="name" placeholder="Name">
         <label for="name" class="form-label">Name:</label>
 
         <div *ngIf="(f.name.invalid && f.name.touched) || f.name.dirty">
@@ -19,7 +19,7 @@
       <div class="form-floating mb-3">
         <input id="firstname" type="text" class="form-control"
           [class.is-invalid]="f.firstname.invalid && f.firstname.touched"
-          formControlName="firstname" placeholder="Firstname" required>
+          formControlName="firstname" placeholder="Firstname">
         <label for="firstname" class="form-label">Firstname:</label>
 
         <div *ngIf="(f.firstname.invalid && f.firstname.touched) || f.firstname.dirty">
@@ -32,7 +32,7 @@
       <div class="form-floating mb-3">
         <input id="email" type="email" class="form-control"
           [class.is-invalid]="f.email.invalid && f.email.touched"
-          formControlName="email" placeholder="Email" required>
+          formControlName="email" placeholder="Email">
         <label for="email" class="form-label">Email:</label>
 
         <div *ngIf="(f.email.invalid && f.email.touched) || f.email.dirty">
@@ -47,7 +47,7 @@
         <div class="form-floating flex-grow-1">
           <input id="password" type="{{ passwordType }}" class="form-control"
           [class.is-invalid]="f.password.invalid && f.password.touched"
-          formControlName="password" placeholder="Password" required>
+          formControlName="password" placeholder="Password">
           <label for="password" class="form-label">Password:</label>
         </div>
         <a class="input-group-text rounded-end" (click)="toggleShow()">
@@ -69,7 +69,7 @@
       <div class="form-floating mb-3">
         <input id="confirm_password" type="password" class="form-control"
           [class.is-invalid]="f.confirm_password.invalid && f.confirm_password.touched"
-          formControlName="confirm_password" placeholder="Confirm" required>
+          formControlName="confirm_password" placeholder="Confirm">
         <label for="confirm_password" class="form-label">Confirm password:</label>
 
         <div *ngIf="(f.confirm_password.invalid && f.confirm_password.touched) || f.confirm_password.dirty">

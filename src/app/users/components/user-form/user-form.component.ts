@@ -18,7 +18,7 @@ export class UserFormComponent implements OnInit {
   formLegend!: string;
   passwordType!: 'password' | 'text';
   showPassword!: boolean;
-  addMode!: boolean;
+  isAddMode!: boolean;
   faEye= faEye;
   faEyeSlash = faEyeSlash;
 
@@ -31,7 +31,7 @@ export class UserFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.addMode = !this.router.url.match(/^\/users\/[1-9]+\/edit$/g);
+    this.isAddMode = !this.router.url.match(/^\/users\/[1-9]+\/edit$/g);
     this.passwordType = 'password';
     this.formLegend = 'Create User';
     this.titleService.setTitle(this.formLegend);
@@ -41,14 +41,19 @@ export class UserFormComponent implements OnInit {
       name: [null, [Validators.required]],
       firstname: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, Validators.pattern(passwordRegex)]],
-      confirm_password: [null, Validators.required],
+      password: [
+        null, [
+          this.isAddMode ? Validators.required : Validators.nullValidator,
+          Validators.pattern(passwordRegex)
+        ]
+      ],
+      confirm_password: [null],
       roles: [['ROLE_USER'], Validators.required]
     }, {
       validators: [CustomValidators.MatchValidator('password', 'confirm_password')]
     });
 
-    if(!this.addMode) {
+    if(!this.isAddMode) {
       const userId = +this.route.snapshot.params['id'];
       this.formLegend = `Edit User-${userId}`;
       this.titleService.setTitle(this.formLegend);
@@ -56,9 +61,6 @@ export class UserFormComponent implements OnInit {
       passwordRegex = /^((?=.+[a-zA-Z])(?=.+[0-9])|(?=.+[,<>\\\+\?\)\(\-\/;\.!@#\$%\^&\*]))(?=.{0,})/;
       this.userService.getUserById(userId).pipe(
         tap((value) => {
-          this.userForm.get('password')?.clearValidators();
-          this.userForm.get('confirm_password')?.clearValidators();
-          this.userForm.get('password')?.addValidators(Validators.pattern(passwordRegex));
           this.userForm.patchValue(value);
         })
       ).subscribe();
@@ -86,14 +88,14 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if(this.addMode) {
+    if(this.isAddMode) {
       this.userService.addUser(this.userForm.value).pipe(
         tap((value) => this.router.navigateByUrl(`users/+${value.id}`))
       ).subscribe();
     } else {
       // If the length of password is 0, it means that the password isn't updated
       // so it will be removed from Json request
-      if (this.userForm.value.password.length === 0) {
+      if (!this.userForm.value.password) {
         delete this.userForm.value.password;
       }
 
