@@ -24,4 +24,8 @@ export class UsersService {
     return this.http.post<User>(`${this.apiUrl}/users`, formValue);
   }
 
+  updateUser(formValue: {id: number, name: string, firstname: string, email: string, password?: string, roles: []}): Observable<User> {
+    return this.http.put<User>(`${this.apiUrl}/users/${formValue.id}`, formValue);
+  }
+
 }
