@@ -98,4 +98,14 @@
       <button type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="userForm.invalid">Save</button>
     </div>
   </form>
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <a *ngIf="isAddMode" routerLink="/users" class="btn btn-sm btn-outline-secondary">
+      <fa-icon [icon]="faArrowLeft"></fa-icon>
+       Back
+    </a>
+    <a *ngIf="!isAddMode" routerLink="{{ '/users/'+ f.id.value }}" class="btn btn-sm btn-outline-secondary">
+      <fa-icon [icon]="faArrowLeft"></fa-icon>
+       Back
+    </a>
+  </div>
 </div>

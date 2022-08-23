@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { tap, Observable } from 'rxjs';
-import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.service';
 import { CustomValidators } from 'src/app/core/tools/custom.validator';
 
@@ -21,10 +20,7 @@ export class UserFormComponent implements OnInit {
   isAddMode!: boolean;
   faEye= faEye;
   faEyeSlash = faEyeSlash;
-  roles = [
-    {value: 'ROLE_USER', name: 'User'},
-    {value: 'ROLE_ADMIN', name: 'Admin'}
-  ];
+  faArrowLeft = faArrowLeft;
 
   constructor(
     private formBuilder: FormBuilder,
