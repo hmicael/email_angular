@@ -24,7 +24,11 @@
           <td>{{ user.roles }}</td>
           <td class="">
             <a routerLink="/users/{{ user.id }}" class="btn btn-sm btn-outline-secondary"><fa-icon [icon]="faEye"></fa-icon></a>
-            <a routerLink="/users/{{ user.id }}" class="btn btn-sm btn-outline-secondary"><fa-icon [icon]="faTrash"></fa-icon></a>
+            <app-modal [modalAction]="'delete'"
+              [faIcon]="faTrash"
+              [targetLink]="'/users/' + user.id"
+              [toBeDeletedEntity]="user.firstname + ' ' + user.name">
+            </app-modal>
           </td>
         </tr>
       </tbody>

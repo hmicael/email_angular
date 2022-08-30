@@ -6,6 +6,7 @@ import { UsersRoutingModule } from './user-routing.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     UsersRoutingModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class UsersModule { }

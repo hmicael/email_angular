@@ -16,11 +16,10 @@ export class UserListComponent implements OnInit {
   faTrash = faTrash;
   faArrowLeft = faArrowLeft;
 
-
   constructor(
     private usersService: UsersService,
     private titleService: Title
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.titleService.setTitle('List of users');

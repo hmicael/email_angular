@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { UsersModule } from './users/users.module';
     HttpClientModule,
     AuthModule,
     UsersModule,
+    SharedModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
