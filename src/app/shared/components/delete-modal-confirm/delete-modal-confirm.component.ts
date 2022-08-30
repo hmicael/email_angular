@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal-confirm',
@@ -7,9 +8,11 @@ import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./delete-modal-confirm.component.scss']
 })
 export class DeleteModalConfirmComponent implements OnInit {
-  @Input() public toBeDeletedEntity!: string;
+  @Input() public toBeDeletedEntityName!: string;
 
-  constructor(public modal: NgbActiveModal) {}
+  constructor(
+    public modal: NgbActiveModal
+    ) {}
 
   ngOnInit(): void { }
 }

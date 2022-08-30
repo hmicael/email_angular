@@ -13,7 +13,6 @@ import { Title } from '@angular/platform-browser';
 export class UserListComponent implements OnInit {
   users$!: Observable<User[]>;
   faEye = faEye;
-  faTrash = faTrash;
   faArrowLeft = faArrowLeft;
 
   constructor(

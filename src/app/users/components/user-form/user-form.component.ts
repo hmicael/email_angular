@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faArrowLeft, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { tap, Observable } from 'rxjs';
+import { tap } from 'rxjs';
 import { UsersService } from 'src/app/core/services/users.service';
 import { CustomValidators } from 'src/app/core/tools/custom.validator';
 

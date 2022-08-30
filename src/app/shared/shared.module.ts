@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ModalComponent } from './components/modal/modal.component';
+import { DeleteModalComponent } from './components/delete-modal/delete-modal.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DeleteModalConfirmComponent } from './components/delete-modal-confirm/delete-modal-confirm.component';
@@ -8,7 +8,7 @@ import { DeleteModalConfirmComponent } from './components/delete-modal-confirm/d
 
 @NgModule({
   declarations: [
-    ModalComponent,
+    DeleteModalComponent,
     DeleteModalConfirmComponent
   ],
   imports: [
@@ -16,7 +16,7 @@ import { DeleteModalConfirmComponent } from './components/delete-modal-confirm/d
     NgbModule,
     FontAwesomeModule
   ],
-  exports: [ModalComponent],
-  bootstrap: [ModalComponent]
+  exports: [DeleteModalComponent],
+  bootstrap: [DeleteModalComponent]
 })
 export class SharedModule { }
