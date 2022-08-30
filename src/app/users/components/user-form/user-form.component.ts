@@ -93,7 +93,7 @@ export class UserFormComponent implements OnInit {
     if(this.isAddUserMode) {
       delete this.userForm.value.id;
       this.userService.addUser(this.userForm.value).pipe(
-        tap((value) => this.router.navigateByUrl(`users/+${value.id}`))
+        tap((createdUser) => this.router.navigate(['users', createdUser.id]))
       ).subscribe();
     } else {
       // If password is null, it will be removed from Json request
@@ -101,7 +101,7 @@ export class UserFormComponent implements OnInit {
         delete this.userForm.value.password;
       }
       this.userService.updateUser(this.userForm.value).pipe(
-        tap(() => this.router.navigateByUrl(`users/${this.userForm.value.id}`))
+        tap(() => this.router.navigate(['users', this.userForm.value.id]))
       ).subscribe();
     }
   }

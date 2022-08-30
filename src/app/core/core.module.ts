@@ -2,9 +2,12 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import * as fr from '@angular/common/locales/fr';
 import { registerLocaleData, CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    HeaderComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule
