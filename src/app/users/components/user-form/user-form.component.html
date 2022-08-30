@@ -92,17 +92,17 @@
       </div>
     </fieldset>
     <!-- **** ID on Edit **** -->
-    <input id="id" class="form-control" *ngIf="f.id" type="hidden" formControlName="id"/>
+    <input id="id" class="form-control" *ngIf="!isAddUserMode" type="hidden" formControlName="id"/>
     <div class="action-buttons mt-3">
       <button type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="userForm.invalid">Save</button>
     </div>
   </form>
   <div class="d-flex flex-column justify-content-center align-items-center">
-    <a *ngIf="isAddMode" routerLink="/users" class="btn btn-sm btn-outline-secondary">
+    <a *ngIf="isAddUserMode" routerLink="/users" class="btn btn-sm btn-outline-secondary">
       <fa-icon [icon]="faArrowLeft"></fa-icon>
        Back
     </a>
-    <a *ngIf="!isAddMode" routerLink="{{ '/users/'+ f.id.value }}" class="btn btn-sm btn-outline-secondary">
+    <a *ngIf="!isAddUserMode" routerLink="{{ '/users/'+ f.id.value }}" class="btn btn-sm btn-outline-secondary">
       <fa-icon [icon]="faArrowLeft"></fa-icon>
        Back
     </a>

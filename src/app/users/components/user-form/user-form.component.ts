@@ -17,7 +17,7 @@ export class UserFormComponent implements OnInit {
   formLegend!: string;
   passwordType!: 'password' | 'text';
   showPassword!: boolean;
-  isAddMode!: boolean;
+  isAddUserMode!: boolean;
   faEye= faEye;
   faEyeSlash = faEyeSlash;
   faArrowLeft = faArrowLeft;
@@ -31,19 +31,19 @@ export class UserFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.isAddMode = !this.router.url.match(/^\/users\/[1-9]+\/edit$/g);
+    this.isAddUserMode = !this.router.url.match(/^\/users\/[1-9]+\/edit$/g);
     this.passwordType = 'password';
     this.formLegend = 'Create User';
     this.titleService.setTitle(this.formLegend);
     let passwordRegex = /^((?=.+[a-zA-Z])(?=.+[0-9])|(?=.+[,<>\\\+\?\)\(\-\/;\.!@#\$%\^&\*]))(?=.{8,})/;
     this.userForm = this.formBuilder.group({
-      id: [null],
+      id: [0],
       name: [null, [Validators.required]],
       firstname: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.email]],
       password: [
         null, [
-          this.isAddMode ? Validators.required : Validators.nullValidator,
+          this.isAddUserMode ? Validators.required : Validators.nullValidator,
           Validators.pattern(passwordRegex)
         ]
       ],
@@ -53,7 +53,7 @@ export class UserFormComponent implements OnInit {
       validators: [CustomValidators.MatchValidator('password', 'confirm_password')]
     });
 
-    if(!this.isAddMode) {
+    if(!this.isAddUserMode) {
       const userId = +this.route.snapshot.params['id'];
       this.formLegend = `Edit User-${userId}`;
       this.titleService.setTitle(this.formLegend);
@@ -72,7 +72,7 @@ export class UserFormComponent implements OnInit {
   }
 
   changeRoles(e: any): void {
-    this.userForm.get('roles')?.setValue([e.target.value]);
+    this.userForm.get('roles')?.setValue(e.target.value);
   }
 
   get passwordMatchError(): any {
@@ -88,7 +88,10 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if(this.isAddMode) {
+    delete this.userForm.value.confirm_password;
+    this.userForm.value.roles = [this.userForm.value.roles];
+    if(this.isAddUserMode) {
+      delete this.userForm.value.id;
       this.userService.addUser(this.userForm.value).pipe(
         tap((value) => this.router.navigateByUrl(`users/+${value.id}`))
       ).subscribe();
