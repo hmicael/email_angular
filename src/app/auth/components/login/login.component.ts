@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { map, tap } from 'rxjs';
+import { catchError, map, tap, throwError } from 'rxjs';
 import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   loginError!: string;
+  isLoginFailed!: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -45,12 +46,16 @@ export class LoginComponent implements OnInit {
     const val = this.loginForm.value;
     this.authService.login(val.email, val.password)
     .pipe(
-      tap(() => this.router.navigateByUrl('/users'))
+      tap(() => this.router.navigateByUrl('/users')),
+      catchError((error) => {
+        this.isLoginFailed = true;
+        return throwError(() => new Error('Login failed'));
+      })
     )
     .subscribe({
       next(value) { localStorage.setItem('access_token', value.token) },
-      error(err) { console.log('Error') },
-      complete() { console.log('Finished sequence'); }
+      error(err) { console.log('Login failed') },
+      complete() { console.log('Login sequence finished'); }
     });
   }
 }
