@@ -13,21 +13,8 @@ export class AuthService {
 
   constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {}
 
-  login(username: string, password: string): boolean {
-    // this is just the HTTP call,
-    // we still need to handle the reception of the token
-    try {
-      const httpResponse = this.http.post<Token>(`${this.apiUrl}/login`, {username, password}).pipe(shareReplay());
-      httpResponse.subscribe({
-        next(value) { localStorage.setItem('access_token', value.token) },
-        error(err) { console.error('Error') },
-        complete() { console.log('Finished sequence'); }
-      });
-      return true;
-    } catch (error) {
-      console.error(error);
-      return false;
-    }
+  login(username: string, password: string): Observable<Token> {
+    return this.http.post<Token>(`${this.apiUrl}/login`, {username, password}).pipe(shareReplay());
   }
 
   isLogged(): boolean {

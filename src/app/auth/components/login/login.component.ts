@@ -43,12 +43,14 @@ export class LoginComponent implements OnInit {
 
   onLogin(): void {
     const val = this.loginForm.value;
-    if (this.authService.login(val.email, val.password) === true) {
-      this.router.navigateByUrl('/users');
-    } else {
-      this.loginError = "Login failed";
-    }
-    console.log(this.loginError);
-    this.router.navigateByUrl('/users');
+    this.authService.login(val.email, val.password)
+    .pipe(
+      tap(() => this.router.navigateByUrl('/users'))
+    )
+    .subscribe({
+      next(value) { localStorage.setItem('access_token', value.token) },
+      error(err) { console.log('Error') },
+      complete() { console.log('Finished sequence'); }
+    });
   }
 }
