@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.service';
-import { faTrash, faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 
