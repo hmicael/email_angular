@@ -1,0 +1,30 @@
+<div class="d-flex align-items-center justify-content-center vh-100">
+  <div>
+    <form class="form-card col-xs-3" [formGroup]="emailForm">
+      <fieldset>
+        <legend>Forgot password</legend>
+        <div class="form-group">
+            <label for="email" class="form-label">Email:</label>
+            <input id="email" type="email" class="form-control"
+              [class.is-invalid]="email.invalid && email.touched"
+              formControlName="email" autofocus>
+
+            <div *ngIf="(email.invalid && email.touched) || email.dirty">
+              <!--question mark(?) is a safe navigation operator-->
+              <small *ngIf="email.errors?.required" class="text-danger">Email is required.</small>
+              <small *ngIf="email.errors?.email" class="text-danger">Please provide a valid email address.</small>
+            </div>
+        </div>
+      </fieldset>
+      <div class="action-buttons mt-3">
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="emailForm.invalid">Submit</button>
+      </div>
+    </form>
+    <div class="d-flex align-items-center justify-content-center">
+      <a routerLink="/auth/login" class="btn btn-outline-secondary">
+        <fa-icon [icon]="faArrowLeft"></fa-icon>
+         Back
+      </a>
+    </div>
+  </div>
+</div>

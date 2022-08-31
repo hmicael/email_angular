@@ -24,4 +24,12 @@ export class AuthService {
       return true;
     }
   }
+
+  forgotPassword(email: string): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}/users/forgot-password`, {email}).pipe(shareReplay());
+  }
+
+  resetPassword(password: string, token: string): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}/users/reset-password/${token}`, password).pipe(shareReplay());
+  }
 }
