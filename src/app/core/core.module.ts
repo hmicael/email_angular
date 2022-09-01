@@ -5,15 +5,19 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { httpInterceptorProviders } from './interceptors';
+import { PagenotfoundComponent } from './components/errors/pagenotfound/pagenotfound.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    PagenotfoundComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    FontAwesomeModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr-FR' },

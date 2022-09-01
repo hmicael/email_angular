@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { environment } from './../environments/environment';
-import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +10,12 @@ import { AuthService } from './core/services/auth.service';
 export class AppComponent implements OnInit{
   title = 'email_angular';
   apiUrl = environment.apiURL;
-  isLogged!: boolean;
 
 
   constructor(
-    private authService: AuthService
+    public router: Router
     ) { }
 
     ngOnInit(): void {
-      this.isLogged = this.authService.isLogged()
     }
 }
