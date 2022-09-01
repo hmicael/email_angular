@@ -1,5 +1,5 @@
-<div class="container">
-  <form class="form-card col-md-6 " [formGroup]="userForm">
+<div class="container col-md-6 mb-3">
+  <form class="form-card" [formGroup]="userForm">
     <fieldset>
       <legend>{{ formLegend }}</legend>
       <!-- **** NAME **** -->
@@ -94,17 +94,15 @@
     <!-- **** ID on Edit **** -->
     <input id="id" class="form-control" *ngIf="!isAddUserMode" type="hidden" formControlName="id"/>
     <div class="action-buttons mt-3">
-      <button type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="userForm.invalid">Save</button>
+      <button type="submit" class="btn btn-outline-secondary" (click)="onSubmit()" [disabled]="userForm.invalid">Save</button>
     </div>
   </form>
-  <div class="d-flex flex-column justify-content-center align-items-center">
-    <a *ngIf="isAddUserMode" routerLink="/users" class="btn btn-sm btn-outline-secondary">
-      <fa-icon [icon]="faArrowLeft"></fa-icon>
-       Back
-    </a>
-    <a *ngIf="!isAddUserMode" routerLink="{{ '/users/'+ f.id.value }}" class="btn btn-sm btn-outline-secondary">
-      <fa-icon [icon]="faArrowLeft"></fa-icon>
-       Back
-    </a>
-  </div>
+  <a *ngIf="isAddUserMode" routerLink="/users" class="btn btn-outline-secondary">
+    <fa-icon [icon]="faArrowLeft"></fa-icon>
+     Back
+  </a>
+  <a *ngIf="!isAddUserMode" routerLink="{{ '/users/'+ f.id.value }}" class="btn btn-outline-secondary">
+    <fa-icon [icon]="faArrowLeft"></fa-icon>
+     Back
+  </a>
 </div>

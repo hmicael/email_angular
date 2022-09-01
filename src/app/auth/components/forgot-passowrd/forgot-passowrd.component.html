@@ -1,6 +1,6 @@
-<div class="d-flex align-items-center justify-content-center vh-100">
+<div class="container d-flex align-items-center justify-content-center vh-100">
   <div>
-    <form class="form-card col-xs-3" [formGroup]="emailForm">
+    <form class="form-card col-xs-4" [formGroup]="emailForm">
       <fieldset>
         <legend>Forgot password</legend>
         <div class="form-group">
@@ -17,14 +17,12 @@
         </div>
       </fieldset>
       <div class="action-buttons mt-3">
-        <button type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="emailForm.invalid">Submit</button>
+        <button type="submit" class="btn btn-outline-secondary" (click)="onSubmit()" [disabled]="emailForm.invalid">Submit</button>
       </div>
     </form>
-    <div class="d-flex align-items-center justify-content-center">
-      <a routerLink="/auth/login" class="btn btn-outline-secondary">
-        <fa-icon [icon]="faArrowLeft"></fa-icon>
-         Back
-      </a>
-    </div>
+    <a routerLink="/auth/login" class="btn btn-outline-secondary">
+      <fa-icon [icon]="faArrowLeft"></fa-icon>
+       Back
+    </a>
   </div>
 </div>

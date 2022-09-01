@@ -1,6 +1,6 @@
 <div class="d-flex align-items-center justify-content-center vh-100">
   <div>
-    <form class="form-card col-xs-3" [formGroup]="loginForm">
+    <form class="form-card col-xs-4" [formGroup]="loginForm">
       <fieldset>
         <legend>Login</legend>
         <div *ngIf="isLoginFailed" class="col-xs-3 border border-danger rounded p-2">
@@ -31,7 +31,7 @@
         </div>
       </fieldset>
       <div class="action-buttons mt-3">
-        <button type="submit" class="btn btn-primary" (click)="onLogin()" [disabled]="loginForm.invalid">Login</button>
+        <button type="submit" class="btn btn-outline-secondary" (click)="onLogin()" [disabled]="loginForm.invalid">Login</button>
       </div>
     </form>
     <div class="d-flex align-items-center justify-content-center">
