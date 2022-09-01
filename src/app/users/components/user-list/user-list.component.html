@@ -22,8 +22,9 @@
           <td>{{ user.firstname }}</td>
           <td>{{ user.email }}</td>
           <td>{{ user.roles }}</td>
-          <td class="">
+          <td>
             <a routerLink="/users/{{ user.id }}" class="btn btn-sm btn-outline-secondary"><fa-icon [icon]="faEye"></fa-icon></a>
+            <span class="col-md-3 offset-md-2"></span>
             <app-delete-modal [toBeDeletedEntity]="'users'"
               [toBeDeletedId]="user.id"
               [toBeDeletedEntityName]="user.firstname + ' ' + user.name">
