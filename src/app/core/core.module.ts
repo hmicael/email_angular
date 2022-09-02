@@ -7,11 +7,13 @@ import { RouterModule } from '@angular/router';
 import { httpInterceptorProviders } from './interceptors';
 import { PagenotfoundComponent } from './components/errors/pagenotfound/pagenotfound.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ServerErrorComponent } from './components/errors/servererror/servererror.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    ServerErrorComponent
   ],
   imports: [
     CommonModule,
