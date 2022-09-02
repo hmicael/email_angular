@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Listable } from '../models/listable.model';
 import { User } from '../models/user.model';
 
 @Injectable({
@@ -12,8 +13,8 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  getUsersList(page: number = 1, limit: number = 50): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}/users?page=${page}&limit=${limit}`);
+  getUsersList(page: number = 1, limit: number = 50): Observable<Listable<User[]>> {
+    return this.http.get<Listable<User[]>>(`${this.apiUrl}/users?page=${page}&limit=${limit}`);
   }
 
   searchUser(keyword: string): Observable<User[]> {

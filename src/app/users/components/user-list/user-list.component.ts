@@ -4,6 +4,7 @@ import { UsersService } from 'src/app/core/services/users.service';
 import { faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 import { Title } from '@angular/platform-browser';
+import { Listable } from 'src/app/core/models/listable.model';
 
 @Component({
   selector: 'app-user-list',
@@ -11,9 +12,12 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  users$!: Observable<User[]>;
+  users!: User[];
   faEye = faEye;
   faArrowLeft = faArrowLeft;
+  page: number = 1;
+  limit: number = 50;
+  total: number = 0;
 
   constructor(
     private usersService: UsersService,
@@ -22,17 +26,23 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('List of users');
-    this.users$ = this.usersService.getUsersList();
+    this.usersService.getUsersList().subscribe((response: Listable<User[]>) => {
+      this.users = response.data;
+    });
   }
 
   searchOnEnter(event: any): void {
     let keyword = event.target.value;
-    this.users$ = this.usersService.searchUser(keyword);
+    this.usersService.searchUser(keyword).subscribe((response:User[]) => {
+      this.users = response;
+    });
   }
 
   onResetSearch(event: any) {
     if (event.target.value.length == 0) {
-      this.users$ = this.usersService.getUsersList();
+      this.usersService.getUsersList().subscribe((response: Listable<User[]>) => {
+        this.users = response.data;
+      });
     }
   }
 }

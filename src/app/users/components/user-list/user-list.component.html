@@ -1,13 +1,14 @@
 <div class="container">
   <div class="mt-4 mb-2 col-md-12">
-    <span class="text-muted btn-align">List of users</span>
+    <span class="mt-1 text-muted btn-align">List of users</span>
     <div class="float-sm-end">
       <input type="text"
-        class="me-2 btn-align align-middle border rounded"
+        class="me-2 mt-1 btn-align align-middle border rounded"
         placeholder="Search then press Enter"
         (keyup.enter)="searchOnEnter($event)"
-        (keyup)="onResetSearch($event)">
-      <a routerLink="/users/create" class="btn btn-outline-secondary align-middle">+</a>
+        (keyup)="onResetSearch($event)"
+        autofocus>
+      <a routerLink="/users/create" class="btn btn-outline-secondary align-middle mt-1">+</a>
     </div>
   </div>
   <div class="table-responsive">
@@ -23,7 +24,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users$ | async">
+        <tr *ngFor="let user of users">
           <th scope="row">{{ user.id }}</th>
           <td>{{ user.name }}</td>
           <td>{{ user.firstname }}</td>
