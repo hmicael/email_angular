@@ -1,7 +1,14 @@
 <div class="container">
-  <div class="mt-4 mb-2">
+  <div class="mt-4 mb-2 col-md-12">
     <span class="text-muted btn-align">List of users</span>
-    <a routerLink="/users/create" class="btn btn-outline-secondary float-end">+</a>
+    <div class="float-sm-end">
+      <input type="text"
+        class="me-2 btn-align align-middle border rounded"
+        placeholder="Search then press Enter"
+        (keyup.enter)="searchOnEnter($event)"
+        (keyup)="onResetSearch($event)">
+      <a routerLink="/users/create" class="btn btn-outline-secondary align-middle">+</a>
+    </div>
   </div>
   <div class="table-responsive">
     <table class="table table-striped table-bordered table-hover text-center">

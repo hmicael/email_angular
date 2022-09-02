@@ -24,4 +24,15 @@ export class UserListComponent implements OnInit {
     this.titleService.setTitle('List of users');
     this.users$ = this.usersService.getUsersList();
   }
+
+  searchOnEnter(event: any): void {
+    let keyword = event.target.value;
+    this.users$ = this.usersService.searchUser(keyword);
+  }
+
+  onResetSearch(event: any) {
+    if (event.target.value.length == 0) {
+      this.users$ = this.usersService.getUsersList();
+    }
+  }
 }

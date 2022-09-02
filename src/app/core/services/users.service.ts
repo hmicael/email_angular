@@ -12,8 +12,12 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  getUsersList(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}/users`);
+  getUsersList(page: number = 1, limit: number = 50): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/users?page=${page}&limit=${limit}`);
+  }
+
+  searchUser(keyword: string): Observable<User[]> {
+    return this.http.post<any>(`${this.apiUrl}/users/search`, {keyword});
   }
 
   getUserById(id: number): Observable<User> {
@@ -24,7 +28,7 @@ export class UsersService {
     return this.http.post<User>(`${this.apiUrl}/users`, formValue);
   }
 
-  updateUser(formValue: {id: number, name: string, firstname: string, email: string, password?: string, roles: []}): Observable<User> {
+  updateUser(formValue: {id: number, name: string, firstname: string, email: string, password?: string, roles: []}): any {
     return this.http.put<User>(`${this.apiUrl}/users/${formValue.id}`, formValue);
   }
 
