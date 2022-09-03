@@ -8,12 +8,14 @@ import { httpInterceptorProviders } from './interceptors';
 import { PagenotfoundComponent } from './components/errors/pagenotfound/pagenotfound.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ServerErrorComponent } from './components/errors/servererror/servererror.component';
+import { NotAuthorizedComponent } from './components/errors/notauthorized/notauthorized.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     PagenotfoundComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    NotAuthorizedComponent
   ],
   imports: [
     CommonModule,

@@ -29,6 +29,10 @@ export class HttpResponseInterceptor implements HttpInterceptor {
               this.router.navigateByUrl('/500-error');
               break;
             }
+            case 403: {
+              this.router.navigateByUrl('/403-error');
+              break;
+            }
            }
          }
          console.log(errorMessage);
