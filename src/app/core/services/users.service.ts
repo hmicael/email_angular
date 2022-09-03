@@ -13,7 +13,7 @@ export class UsersService {
 
   constructor(private http: HttpClient) {}
 
-  getUsersList(page: number = 1, limit: number = 50): Observable<Listable<User[]>> {
+  getUsersList(page: number = 1, limit: number = 25): Observable<Listable<User[]>> {
     return this.http.get<Listable<User[]>>(`${this.apiUrl}/users?page=${page}&limit=${limit}`);
   }
 

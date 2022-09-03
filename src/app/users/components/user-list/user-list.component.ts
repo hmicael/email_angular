@@ -16,8 +16,9 @@ export class UserListComponent implements OnInit {
   faEye = faEye;
   faArrowLeft = faArrowLeft;
   page: number = 1;
-  limit: number = 50;
-  total: number = 0;
+  limit: number = 25;
+  totalItems: number = 0;
+  totalPages: number = 1;
 
   constructor(
     private usersService: UsersService,
@@ -26,8 +27,16 @@ export class UserListComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('List of users');
-    this.usersService.getUsersList().subscribe((response: Listable<User[]>) => {
+    this.getUsers();
+  }
+
+  getUsers(): void {
+    this.usersService.getUsersList(this.page, this.limit).subscribe((response: Listable<User[]>) => {
       this.users = response.data;
+      this.limit = response.limit;
+      this.page = response.page;
+      this.totalItems = response.total;
+      this.totalPages = Math.floor(this.totalItems / this.limit);
     });
   }
 
@@ -40,9 +49,12 @@ export class UserListComponent implements OnInit {
 
   onResetSearch(event: any) {
     if (event.target.value.length == 0) {
-      this.usersService.getUsersList().subscribe((response: Listable<User[]>) => {
-        this.users = response.data;
-      });
+      this.getUsers();
     }
+  }
+
+  onPageChange(event: number) {
+    this.page = event;
+    this.getUsers();
   }
 }
