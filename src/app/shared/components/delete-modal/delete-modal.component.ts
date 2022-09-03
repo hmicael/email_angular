@@ -1,10 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 import { DeleteModalConfirmComponent } from '../delete-modal-confirm/delete-modal-confirm.component';
-import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-delete-modal',
@@ -14,15 +12,12 @@ import { tap } from 'rxjs';
 export class DeleteModalComponent implements OnInit {
   apiUrl = environment.apiURL;
   faTrash = faTrash;
-  @Input() modalAction!: string;
-  @Input() toBeDeletedEntity!: string;
-  @Input() toBeDeletedId!: number;
   @Input() toBeDeletedEntityName!: string;
+  @Output() canDelete: EventEmitter<boolean> = new EventEmitter();
 
 
   constructor(
-    private _modalService: NgbModal,
-    private http: HttpClient
+    private _modalService: NgbModal
     ) {}
 
   ngOnInit(): void { }
@@ -32,16 +27,10 @@ export class DeleteModalComponent implements OnInit {
     modalRef.componentInstance.toBeDeletedEntityName = this.toBeDeletedEntityName;
     modalRef.result
       .then(
-        () => {
-          this.http.delete(`${this.apiUrl}/${this.toBeDeletedEntity}/${this.toBeDeletedId}`)
-          .pipe(
-            tap(() => window.location.reload())
-          )
-          .subscribe()
-        }
+        () => this.canDelete.emit(true)
       )
       .catch(
-        (error) => (console.log(error))
+        () => this.canDelete.emit(false)
       );
   }
 }
