@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import { environment } from 'src/environments/environment';
 import { DeleteModalConfirmComponent } from '../delete-modal-confirm/delete-modal-confirm.component';
 
 @Component({
@@ -10,7 +9,6 @@ import { DeleteModalConfirmComponent } from '../delete-modal-confirm/delete-moda
   styleUrls: ['./delete-modal.component.scss']
 })
 export class DeleteModalComponent implements OnInit {
-  apiUrl = environment.apiURL;
   faTrash = faTrash;
   @Input() toBeDeletedEntityName!: string;
   @Output() canDelete: EventEmitter<boolean> = new EventEmitter();
