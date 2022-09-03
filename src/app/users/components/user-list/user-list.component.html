@@ -34,9 +34,9 @@
             <a [routerLink]="['/users', user.id]" class="btn btn-sm btn-outline-secondary">
               <fa-icon [icon]="faEye"></fa-icon>
             </a>
-            <app-delete-modal [toBeDeletedEntity]="'users'"
-              [toBeDeletedId]="user.id"
-              [toBeDeletedEntityName]="user.firstname + ' ' + user.name"></app-delete-modal>
+            <app-delete-modal
+              [toBeDeletedEntityName]="user.firstname + ' ' + user.name"
+              (canDelete)="onDelete($event, user.id)"></app-delete-modal>
           </td>
         </tr>
       </tbody>
