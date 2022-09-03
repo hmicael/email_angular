@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Listable } from '../models/listable.model';
 import { User } from '../models/user.model';
@@ -33,7 +33,7 @@ export class UsersService {
     return this.http.put<User>(`${this.apiUrl}/users/${formValue.id}`, formValue);
   }
 
-  deleteUser(id: number): any{
-    return this.http.delete<User>(`${this.apiUrl}/users/${id}`);
+  deleteUser(id: number): any {
+    return this.http.delete<User>(`${this.apiUrl}/users/${id}`).pipe(shareReplay());
   }
 }
