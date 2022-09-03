@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/core/models/user.model';
 import { UsersService } from 'src/app/core/services/users.service';
 import { faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import { Observable } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { Listable } from 'src/app/core/models/listable.model';
 
