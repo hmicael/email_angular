@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faArrowLeft, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { tap } from 'rxjs';
+import { NotificationService } from 'src/app/core/services/notification.service';
 import { UsersService } from 'src/app/core/services/users.service';
 import { CustomValidators } from 'src/app/core/tools/custom.validator';
 
@@ -27,7 +28,8 @@ export class UserFormComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UsersService,
-    private titleService: Title
+    private titleService: Title,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -89,11 +91,17 @@ export class UserFormComponent implements OnInit {
 
   onSubmit(): void {
     delete this.userForm.value.confirm_password;
-    this.userForm.value.roles = [this.userForm.value.roles];
+    this.userForm.value.roles = Array.isArray(this.userForm.value.roles) ?
+      this.userForm.value.roles : [this.userForm.value.roles];
     if(this.isAddUserMode) {
       delete this.userForm.value.id;
       this.userService.addUser(this.userForm.value).pipe(
-        tap((createdUser) => this.router.navigate(['users', createdUser.id]))
+        tap((createdUser) => this.router.navigate(['users', createdUser.id]).then(
+          () => this.notificationService.showSuccess(
+            `${createdUser.firstname} ${createdUser.name} successfully created !`,
+            'Created'
+          )
+        ))
       ).subscribe();
     } else {
       // If password is null, it will be removed from Json request
@@ -101,7 +109,12 @@ export class UserFormComponent implements OnInit {
         delete this.userForm.value.password;
       }
       this.userService.updateUser(this.userForm.value).pipe(
-        tap(() => this.router.navigate(['users', this.userForm.value.id]))
+        tap(() => this.router.navigate(['users', this.userForm.value.id]).then(
+          () => this.notificationService.showSuccess(
+            `${this.userForm.value.firstname} ${this.userForm.value.name} successfully edited !`,
+            'Edited'
+          )
+        ))
       ).subscribe();
     }
   }

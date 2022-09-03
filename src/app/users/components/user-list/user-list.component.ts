@@ -4,6 +4,8 @@ import { UsersService } from 'src/app/core/services/users.service';
 import { faEye, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Title } from '@angular/platform-browser';
 import { Listable } from 'src/app/core/models/listable.model';
+import { NotificationService } from 'src/app/core/services/notification.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -21,7 +23,8 @@ export class UserListComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private titleService: Title
+    private titleService: Title,
+    private notificationService: NotificationService,
   ) { }
 
   ngOnInit(): void {
@@ -46,14 +49,25 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  onResetSearch(event: any) {
+  onResetSearch(event: any): void {
     if (event.target.value.length == 0) {
       this.getUsers();
     }
   }
 
-  onPageChange(event: number) {
+  onPageChange(event: number): void {
     this.page = event;
     this.getUsers();
+  }
+
+  onDelete(canDelete: boolean, id: number): void {
+    if (canDelete === true) {
+      this.usersService.deleteUser(id).pipe(
+        tap(() => {
+          this.getUsers();
+          this.notificationService.showSuccess(`User ${id} successfully deleted`, 'Delete');
+        })
+      ).subscribe();
+    }
   }
 }
